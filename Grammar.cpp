@@ -451,7 +451,7 @@ std::string Grammar::getFirstSets()
 
 	for(int i = 0; i < nonTerminals.size(); i++)
 	{
-		firstSets += getFirstSet(i);
+		firstSets += getFirstSet(i) + "\n";
 	}
 
 	return firstSets;
@@ -463,7 +463,7 @@ std::string Grammar::getFollowSets()
 
 	for(int i = 0; i < nonTerminals.size(); i++)
 	{
-		followSets += getFollowSet(i);
+		followSets += getFollowSet(i) + "\n";
 	}
 
 	return followSets;
@@ -483,7 +483,7 @@ std::string Grammar::getFirstSet(int index)
 			}
 		}
 
-	return firstSet + " }\n";
+	return firstSet + " }";
 }
 
 std::string Grammar::getFollowSet(int index)
@@ -500,7 +500,7 @@ std::string Grammar::getFollowSet(int index)
 			}
 		}
 
-	return followSet + " }\n";
+	return followSet + " }";
 }
 
 std::string Grammar::getFirstSet(std::string key)
@@ -533,7 +533,7 @@ std::string Grammar::getFirstSet(std::string key)
 			}
 		}
 
-	return firstSet + " }\n";
+	return firstSet + " }";
 }
 
 std::string Grammar::getFollowSet(std::string key)
@@ -565,7 +565,7 @@ std::string Grammar::getFollowSet(std::string key)
 			}
 		}
 
-	return followSet + " }\n";
+	return followSet + " }";
 }
 
 bool Grammar::isNonTerminal(std::string c)
