@@ -975,7 +975,7 @@ char* GetFirstSets()
 	
 	if(programGrammarPointer != NULL)
 	{
-		std::string output = programGrammarPointer->getFirstSets(programFileLexerPointer);
+		std::string output = programGrammarPointer->getFirstSets();
 		
 	    	cStyleOutput = new char[output.length() + 1];
 	   	strcpy(cStyleOutput, output.c_str());
