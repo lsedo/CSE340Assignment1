@@ -944,17 +944,19 @@ void LoadGrammar(char *grammarFileName)
 	{
 		programGrammarPointer = new Grammar(programFileLexerPointer);
 	}
-
-	std::cout << programFileLexerPointer << "\n";
-	std::cout << programGrammarPointer << "\n";
 }
 
 // Returns a string with some statistics for the grammar.
 char* GetStats() 
 {
+    
 	if(programGrammarPointer != NULL)
 	{
-		return &(programGrammarPointer->getStats(programFileLexerPointer)[0]);
+	    std::string output = programGrammarPointer->getStats(programFileLexerPointer);
+	    char* cStyleOutput = new char[output.length() + 1];
+	    strcpy(cStyleOutput, output.c_str());
+	    
+		return cStyleOutput;
 	}
 	else
 	{
