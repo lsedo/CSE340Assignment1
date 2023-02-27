@@ -948,8 +948,9 @@ void LoadGrammar(char *grammarFileName)
 
 // Returns a string with some statistics for the grammar.
 char* GetStats() 
-{
-    
+{   
+	char* cStyleOutput;
+	
 	if(programGrammarPointer != NULL)
 	{
 	    std::string output = programGrammarPointer->getStats(programFileLexerPointer);
@@ -960,61 +961,103 @@ char* GetStats()
 	}
 	else
 	{
-		return "";
+		cStyleOutput = new char[1];
+		cStyleOutput[0] = '\0';
+		
+		return cStyleOutput;
 	}
 }
 
 // Returns the first sets of all nonterminals.
 char* GetFirstSets() 
 {
+	char* cStyleOutput;
+	
 	if(programGrammarPointer != NULL)
 	{
-		return &(programGrammarPointer->getFirstSets()[0]);
+		std::string output = programGrammarPointer->getFirstSets(programFileLexerPointer);
+		
+	    	cStyleOutput = new char[output.length() + 1];
+	   	strcpy(cStyleOutput, output.c_str());
+	    
+		return cStyleOutput;
 	}
 	else
 	{
-		return "";
+		cStyleOutput = new char[1];
+		cStyleOutput[0] = '\0';
+		
+		return cStyleOutput;
 	}
 }
 
 // Returns the first set of the specified nonterminal.
 char* GetFirstSet(char *nonTerminal) 
 {
-	std::string input(nonTerminal);
+	char* cStyleOutput;
 
 	if(programGrammarPointer != NULL)
-	{
-		return &(programGrammarPointer->getFirstSet(input)[0]);
+	{	
+		std::string input(nonTerminal);
+		std::string output = programGrammarPointer->getFirstSet(input);
+		
+	    	cStyleOutput = new char[output.length() + 1];
+	   	strcpy(cStyleOutput, output.c_str());
+	    
+		return cStyleOutput;
 	}
 	else
 	{
-		return "";
+		cStyleOutput = new char[1];
+		cStyleOutput[0] = '\0';
+		
+		return cStyleOutput;
 	}
 }
 
 // Returns the follow sets of all nonterminals.
 char* GetFollowSets() 
 {
+	char* cStyleOutput;
+	
 	if(programGrammarPointer != NULL)
 	{
-		return &(programGrammarPointer->getFollowSets()[0]);
+		std::string output = programGrammarPointer->getFollowSets();
+		
+		cStyleOutput = new char[output.length() + 1];
+	   	strcpy(cStyleOutput, output.c_str());
+		
+		return cStyleOutput;
 	}
 	else
 	{
-		return "";
+		cStyleOutput = new char[1];
+		cStyleOutput[0] = '\0';
+		
+		return cStyleOutput;
 	}
 }
 
 // Returns the follow set of the specified nonterminal.
 char* GetFollowSet(char *nonTerminal) 
 {
-		std::string input(nonTerminal);
+	char* cStyleOutput;
+	
 	if(programGrammarPointer != NULL)
 	{
-		return &(programGrammarPointer->getFollowSet(input)[0]);
+		std::string input(nonTerminal);
+		std::string output = programGrammarPointer->getFollowSet(input);
+		
+		cStyleOutput = new char[output.length() + 1];
+	   	strcpy(cStyleOutput, output.c_str());
+		
+		return cStyleOutput;
 	}
 	else
 	{
-		return "";
+		cStyleOutput = new char[1];
+		cStyleOutput[0] = '\0';
+		
+		return cStyleOutput;
 	}
 }
