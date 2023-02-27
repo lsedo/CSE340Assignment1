@@ -506,7 +506,7 @@ std::string Grammar::getFollowSet(int index)
 std::string Grammar::getFirstSet(std::string key)
 {
 	int index = -1;
-	std::string firstSet = "FIRST(" + nonTerminals.at(index)->getKey() + ") = { ";
+	
 
 	for(int i = 0; i < nonTerminals.size(); i++)
 	{
@@ -516,7 +516,12 @@ std::string Grammar::getFirstSet(std::string key)
 		}
 	}
 
+    if(index == -1)
+    {
+        return "";
+    }
 
+    std::string firstSet = "FIRST(" + nonTerminals.at(index)->getKey() + ") = { ";
 
 	for(int j = 0; j < nonTerminals.at(index)->getFirstSet()->size(); j++)
 		{
@@ -534,7 +539,6 @@ std::string Grammar::getFirstSet(std::string key)
 std::string Grammar::getFollowSet(std::string key)
 {
 	int index = -1;
-	std::string followSet = "FOLLOW(" + nonTerminals.at(index)->getKey() + ") = { ";
 
 	for(int i = 0; i < nonTerminals.size(); i++)
 	{
@@ -544,6 +548,12 @@ std::string Grammar::getFollowSet(std::string key)
 		}
 	}
 
+    if(index == -1)
+    {
+        return "";
+    }
+
+    std::string followSet = "FOLLOW(" + nonTerminals.at(index)->getKey() + ") = { ";
 
 	for(int j = 0; j < nonTerminals.at(index)->getFollowSet()->size(); j++)
 		{
